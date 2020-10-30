@@ -1,0 +1,26 @@
+{
+    "Feedback correct group iteration": [
+        "Okay everyone had their turn, let's check your results ...\nGood job everyone. You've earned yourselves a new piece of the codeword.",
+        "Okay everyone had their turn, let's check your results ...\nGreat job. A piece of the code has been transmitted from earth."
+    ],
+    "Feedback incorrect group iteration": [
+        "Okay everyone had their turn, let's check your results ...\nTransmission failed. Communication with earth was not possible.",
+        "Okay everyone had their turn, let's check your results ...\nOh no, the aliens managed to intercept our communication with earth. The code could not be transmitted"
+    ],
+    "Codeword recap": [
+        "The codeword you now have is {}.",
+        "Earth has transmitted the following codeword so far: {}."
+    ],
+    "Codeword prompt": [
+        "Please enter the codeword to unlock the door.",
+        "Enter the code to advance."
+    ],
+    "Codeword correct": [
+        "The codeword was correct. Congratulations, you solved the task! \nYou can now start another task or end this session by typing /stop.",
+        "Correct codeword. You managed to solve the task, great job! \nYou can now start another task or end this session by typing /stop."
+    ],
+    "Codeword incorrect": [
+        "The codeword was not correct. The door is still locked. Try again.",
+        "Incorrect codeword. You can't open the door. Try again."
+    ]
+}
