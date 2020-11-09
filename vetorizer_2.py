@@ -7,6 +7,8 @@ import pickle
 
 sentence_data = pd.read_csv("./data/tasks/sentence_correction/task_data.csv")
 
+print(sentence_data.columns)
+
 start_time = time.time()
 
 whole_sentences = []
@@ -20,7 +22,7 @@ vectorizer = Vectorizer()
 vectorizer.bert(sentence_data["sentence_corpus"])
 sentence_data["sentence_vectors"] = (vectorizer.vectors).tolist()
 
-print(sentence_data["sentence_vectors"])
+print(sentence_data.index)
 
 end_time = time.time() - start_time
 
