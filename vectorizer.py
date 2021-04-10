@@ -1,28 +1,33 @@
+# Creates a pickled file to read vectorized sentence data for "distance_assessment.py"
+# Input: "./data/tasks/sentence_correction/task_data.csv"
+
 from sent2vec.vectorizer import Vectorizer
-from scipy import spatial
-import numpy as np
+import pandas as pd
 import time
 
-sentences_1 = [
-    "I like english.",
-    "You are crazy",
-    "I admire english to the greatest."
-]
+# setup
+sentence_data = pd.read_csv("./data/tasks/sentence_correction/task_data.csv")
+whole_sentences = []
 
-start_time = time.time()
+if __debug__:
+    print(sentence_data.columns)
+    start_time = time.time()
 
+# each "row" contains its "values" as list item
+# save corrected sentences to "whole_sentences"
+for row, values in sentence_data.iterrows():
+    whole_sentences.append(values[2].format(values[3].strip("{}")))
+
+sentence_data["sentence_corpus"] = whole_sentences
+
+# create vectorized items and save them as list
 vectorizer = Vectorizer()
-vectorizer.bert(sentences_1)
-vectors = vectorizer.vectors
+vectorizer.bert(sentence_data["sentence_corpus"])
+sentence_data["sentence_vectors"] = vectorizer.vectors.tolist()
 
-vectors = np.concatenate([vectors, np.array([(vectors[2] + (vectors[2] - vectors[1]))])])
+if __debug__:
+    print(sentence_data.index)
+    end_time = time.time() - start_time
+    print(end_time)
 
-print(vectors)
-
-end_time = time.time() - start_time
-
-print(end_time)
-
-dist_1 = spatial.distance.cosine(vectors[3], vectors[0])
-dist_2 = spatial.distance.cosine(vectors[3], vectors[2])
-print('dist_1: {0}, dist_2: {1}'.format(dist_1, dist_2))
+sentence_data.to_pickle("pickled_sentences")
